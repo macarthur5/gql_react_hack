@@ -1,16 +1,41 @@
+const express = require("express");
 const mongoose = require("mongoose");
+const schema = require("./schema");
+const app = express();
+const PORT = 7500;
 
-const MONGO_USERNAME = "macarthur";
-const MONGO_PASSWORD = "Martand5#";
-const MONGO_HOSTNAME = "127.0.0.1";
-const MONGO_PORT = "27017";
-const MONGO_DB = "myspacedatabase";
+const MONGO_DB = "gqldb";
+const COLLECTION_NAME = "movies";
+const url = `mongodb://localhost:27017/${MONGO_DB}`;
+mongoose.connect(url, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error: "));
 
-const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
+let openDb = () => {
+  return new Promise((resolve, reject) => {
+    db.once("open", function() {
+      console.log("Successfully connected to MongoDB.");
+      resolve(mongoose.model(`${COLLECTION_NAME}`, schema));
+    });
+  });
+};
 
-mongoose.connect(url, { useNewUrlParser: true, useFindAndModify: false });
+openDb().then(movies => {
+  movies.find({ original_title: "Jurassic World" }, function(error, comments) {
+    console.log(comments);
+    // Display the comments returned by MongoDB, if any were found.
+    // Executes after the query is complete.
+  });
+});
 
-var nameSchema = new mongoose.Schema({
-  firstName: String,
-  lastNameName: String
+//=================================================================================//
+
+app.get("/", (req, res) => {
+  res.json({
+    msg: "GraphQL API"
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on PORT ${PORT}`);
 });
