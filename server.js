@@ -1,26 +1,8 @@
-const express = require("express");
-const app = express();
-const router = express.Router();
-const path = require("path");
-const bodyparser = require("body-parser");
 var http = require("http");
 var Datastore = require("nedb");
 var db = new Datastore({ inMemoryOnly: true });
 var ODataServer = require("simple-odata-server");
 var Adapter = require("simple-odata-server-nedb");
-
-app.use("/shared", express.static("shared"));
-app.use(express.static("resources")); //static index
-app.use(express.static("controllers")); //static index
-app.use(express.static("styles")); //static index
-app.use(express.static("views")); //static index
-app.use(bodyparser.json()); // support json encoded bodies
-app.use(
-  bodyparser.urlencoded({
-    extended: false
-  })
-); // support encoded bodies
-app.use("/", router);
 
 const PORT = 8000;
 
