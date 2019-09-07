@@ -1,0 +1,23 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "GraphQL based api and its consumption in React",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macarthur5/gql_react_hack.git"
+  },
+  "author": "Mac Arthur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/macarthur5/gql_react_hack/issues"
+  },
+  "homepage": "https://github.com/macarthur5/gql_react_hack#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.13"
+  }
+}
