@@ -1,0 +1,18 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "tictactoe in React",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mac Arthur",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "nedb": "^1.8.0",
+    "simple-odata-server": "^1.1.1",
+    "simple-odata-server-nedb": "^1.0.0"
+  }
+}
